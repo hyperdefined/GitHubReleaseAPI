@@ -1,7 +1,6 @@
 package lol.hyper.githubreleaseapi;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
