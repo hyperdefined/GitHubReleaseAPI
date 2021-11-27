@@ -83,4 +83,31 @@ public class GitHubRelease {
         }
         return urls;
     }
+
+    /**
+     * Is the release a draft?
+     *
+     * @return True/False if the release is a draft.
+     */
+    public boolean isDraft() {
+        return object.getBoolean("draft");
+    }
+
+    /**
+     * Is the release a pre-release?
+     *
+     * @return True/False if the release is a pre-release.
+     */
+    public boolean isPreRelease() {
+        return object.getBoolean("prerelease");
+    }
+
+    /**
+     * Gets the HTML link of the release. This is the "regular" release page.
+     *
+     * @return The URL of release.
+     */
+    public String getRegularLink() {
+        return object.getString("html_url");
+    }
 }
