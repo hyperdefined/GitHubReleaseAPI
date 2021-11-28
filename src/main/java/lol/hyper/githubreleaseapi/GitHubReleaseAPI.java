@@ -55,7 +55,7 @@ public class GitHubReleaseAPI {
      * Get how many versions behind a release is.
      *
      * @param release The release you want to check.
-     * @return The number of builds behind from (release) -> (latest)
+     * @return The number of builds behind from (release) to (latest)
      */
     public int getBuildsBehind(GitHubRelease release) {
         return releases.indexOf(release);
