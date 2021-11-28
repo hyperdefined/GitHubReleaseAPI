@@ -1,4 +1,12 @@
 ## Usage
+Add this to your `pom.xml`:
+```xml
+<dependency>
+    <groupId>lol.hyper</groupId>
+    <artifactId>github-release-api</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
 First, access your repo's API with `GitHubReleaseAPI`.
 * `repo-name`: The repository's name.
 * `org/username`: Your GitHub's username or the organization's name.
