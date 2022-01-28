@@ -4,7 +4,7 @@ Add this to your `pom.xml`:
 <dependency>
     <groupId>lol.hyper</groupId>
     <artifactId>github-release-api</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 First, access your repo's API with `GitHubReleaseAPI`.
@@ -49,3 +49,13 @@ release.getCreatedDate();
 // Gets the attached files on the release.
 // These are direct links to attached files.
 release.getReleaseAssets();
+
+// Is the release a draft?
+release.isDraft();
+
+// Is the release a pre-release?
+release.isPreRelease();
+
+//Gets the "regular" link to the GitHub release page.
+release.getRegularLink();
+```
