@@ -23,7 +23,7 @@
 
     <groupId>lol.hyper</groupId>
     <artifactId>github-release-api</artifactId>
-    <version>1.1.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
     <name>GitHubReleaseAPI</name>
     <description>
