@@ -9,9 +9,9 @@ Add this to your `pom.xml`:
 ```
 First, access your repo's API with `GitHubReleaseAPI`.
 * `repo-name`: The repository's name.
-* `org/username`: Your GitHub's username or the organization's name.
+* `org OR username`: Your GitHub's username or the organization's name. This is where the repository is. If it's on an organization, then you would put the organization's name. If it's on your own account, put your username.
 ```java
-GitHubReleaseAPI api = new GitHubReleaseAPI("repo-name", "org/username");
+GitHubReleaseAPI api = new GitHubReleaseAPI("repo-name", "org OR username");
 
 // Example
 GitHubReleaseAPI api = new GitHubReleaseAPI("MyProject", "hyperdefined");
