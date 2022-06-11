@@ -120,6 +120,10 @@
                             <pattern>org.json</pattern>
                             <shadedPattern>lol.hyper.githubreleaseapi.json</shadedPattern>
                         </relocation>
+                        <relocation>
+                            <pattern>org.jetbrains</pattern>
+                            <shadedPattern>lol.hyper.githubreleaseapi.jetbrains</shadedPattern>
+                        </relocation>
                     </relocations>
                 </configuration>
                 <executions>
@@ -188,6 +192,7 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20220320</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
