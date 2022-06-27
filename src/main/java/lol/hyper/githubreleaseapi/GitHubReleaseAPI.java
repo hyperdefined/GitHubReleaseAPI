@@ -37,6 +37,13 @@ public class GitHubReleaseAPI {
     private final JSONArray array;
     private final List<GitHubRelease> releases;
 
+    /**
+     * Create an API object. This object is bound to 1 repository.
+     *
+     * @param repoName The repository name.
+     * @param orgName  The name of the user OR organization the repository is on.
+     * @throws IOException Thrown if there is an error making the request.
+     */
     public GitHubReleaseAPI(@NotNull String repoName, @NotNull String orgName) throws IOException {
         this.array = readGitHubAPI(repoName, orgName);
         this.releases = getReleases();

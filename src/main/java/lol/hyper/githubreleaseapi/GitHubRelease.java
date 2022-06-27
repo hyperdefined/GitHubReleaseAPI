@@ -29,6 +29,10 @@ public class GitHubRelease {
 
     private final JSONObject object;
 
+    /**
+     * Creates a release object of a certain tag on GitHub.
+     * @param object The JSON object of the release.
+     */
     protected GitHubRelease(JSONObject object) {
         this.object = object;
     }
