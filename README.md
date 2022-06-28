@@ -4,7 +4,7 @@ Add this to your `pom.xml`:
 <dependency>
     <groupId>lol.hyper</groupId>
     <artifactId>github-release-api</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
 </dependency>
 ```
 First, access your repo's API with `GitHubReleaseAPI`.
