@@ -23,7 +23,7 @@
 
     <groupId>lol.hyper</groupId>
     <artifactId>github-release-api</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
     <name>GitHubReleaseAPI</name>
     <description>
@@ -193,6 +193,7 @@
             <artifactId>json</artifactId>
             <version>20220320</version>
             <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
