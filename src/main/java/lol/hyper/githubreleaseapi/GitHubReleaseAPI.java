@@ -36,6 +36,7 @@ public class GitHubReleaseAPI {
 
     private final JSONArray array;
     private final List<GitHubRelease> releases;
+    private final String repoURL;
 
     /**
      * Create an API object. This object is bound to 1 repository.
@@ -47,6 +48,7 @@ public class GitHubReleaseAPI {
     public GitHubReleaseAPI(@NotNull String repoName, @NotNull String orgName) throws IOException {
         this.array = readGitHubAPI(repoName, orgName);
         this.releases = getReleases();
+        this.repoURL = "https://github.com/" + orgName + "/" + repoName;
     }
 
     /**
@@ -56,7 +58,7 @@ public class GitHubReleaseAPI {
      */
     public @Nullable List<GitHubRelease> getAllReleases() {
         if (releases.isEmpty()) {
-            throw new NoReleasesFoundException("No releases exist for repository");
+            throw new NoReleasesFoundException(repoURL);
         }
         return releases;
     }
@@ -69,7 +71,7 @@ public class GitHubReleaseAPI {
      */
     public int getBuildsBehind(GitHubRelease release) {
         if (releases.isEmpty()) {
-            throw new NoReleasesFoundException("No releases exist for repository");
+            throw new NoReleasesFoundException(repoURL);
         }
         return releases.indexOf(release);
     }
@@ -81,7 +83,7 @@ public class GitHubReleaseAPI {
      */
     public @NotNull GitHubRelease getLatestVersion() {
         if (releases.isEmpty()) {
-            throw new NoReleasesFoundException("No releases exist for repository");
+            throw new NoReleasesFoundException(repoURL);
         }
         return releases.get(0);
     }
@@ -94,7 +96,7 @@ public class GitHubReleaseAPI {
      */
     public @Nullable GitHubRelease getReleaseByTag(@NotNull String tag) {
         if (releases.isEmpty()) {
-            throw new NoReleasesFoundException("No releases exist for repository");
+            throw new NoReleasesFoundException(repoURL);
         }
         for (GitHubRelease release : releases) {
             if (release.getTagVersion().equalsIgnoreCase(tag)) {
@@ -135,7 +137,7 @@ public class GitHubReleaseAPI {
         List<GitHubRelease> releases = new ArrayList<>();
         JSONArray remoteVersions = array;
         if (remoteVersions.isEmpty()) {
-            throw new NoReleasesFoundException("No releases exist for repository");
+            throw new NoReleasesFoundException(repoURL);
         }
 
         for (int i = 0; i < remoteVersions.length(); i++) {
