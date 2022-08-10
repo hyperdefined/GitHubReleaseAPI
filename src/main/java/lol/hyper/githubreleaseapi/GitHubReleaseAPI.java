@@ -146,4 +146,12 @@ public class GitHubReleaseAPI {
         }
         return releases;
     }
+
+    /**
+     * Get the repository's URL.
+     * @return GitHub URL to the repository.
+     */
+    public String getRepoURL() {
+        return repoURL;
+    }
 }
