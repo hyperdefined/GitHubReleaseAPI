@@ -18,7 +18,6 @@
 package lol.hyper.githubreleaseapi;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
 
 import java.io.BufferedReader;
@@ -29,7 +28,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,7 +45,7 @@ public class GitHubReleaseAPI {
      * @param repoName The repository name.
      * @param orgName  The name of the user OR organization the repository is on.
      */
-    public GitHubReleaseAPI(@NotNull String repoName, @NotNull String orgName) throws IOException{
+    public GitHubReleaseAPI(@NotNull String repoName, @NotNull String orgName) throws IOException {
         this.array = readGitHubAPI(repoName, orgName);
         this.releases = getReleases();
         this.repoURL = "https://github.com/" + orgName + "/" + repoName;
@@ -147,6 +145,7 @@ public class GitHubReleaseAPI {
 
     /**
      * Get the repository's URL.
+     *
      * @return GitHub URL to the repository.
      */
     public String getRepoURL() {

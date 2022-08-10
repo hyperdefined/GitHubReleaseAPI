@@ -38,6 +38,7 @@ public class GitHubRelease {
 
     /**
      * Creates a release object of a certain tag on GitHub.
+     *
      * @param object The JSON object of the release.
      */
     protected GitHubRelease(JSONObject object) {
@@ -131,6 +132,7 @@ public class GitHubRelease {
 
     /**
      * Gets the URL of the release.
+     *
      * @return The URL of this release.
      */
     public String getReleaseURL() {
