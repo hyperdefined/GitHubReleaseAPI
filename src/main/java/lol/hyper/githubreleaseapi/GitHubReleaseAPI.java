@@ -98,16 +98,13 @@ public class GitHubReleaseAPI {
      * @param tag The tag to search for.
      * @return The release from given tag.
      */
-    public @Nullable GitHubRelease getReleaseByTag(@NotNull String tag) {
-        if (releases.isEmpty()) {
-            throw new NoReleasesFoundException(repoURL);
-        }
+    public @NotNull GitHubRelease getReleaseByTag(@NotNull String tag) {
         for (GitHubRelease release : releases) {
             if (release.getTagVersion().equalsIgnoreCase(tag)) {
                 return release;
             }
         }
-        return null;
+        throw new ReleaseNotFoundException(tag);
     }
 
     /**
@@ -140,9 +137,6 @@ public class GitHubReleaseAPI {
     private @NotNull List<GitHubRelease> getReleases() {
         List<GitHubRelease> releases = new ArrayList<>();
         JSONArray remoteVersions = array;
-        if (remoteVersions.isEmpty()) {
-            throw new NoReleasesFoundException(repoURL);
-        }
 
         for (int i = 0; i < remoteVersions.length(); i++) {
             GitHubRelease temp = new GitHubRelease(remoteVersions.getJSONObject(i));
