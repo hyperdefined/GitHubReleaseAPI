@@ -29,7 +29,7 @@
     <description>
         Small library to access GitHub releases.
     </description>
-    <url>https://github.com/hyperdefined/GitHubReleaseAPI</url>
+    <url>https://github.com/hyperdefined/GitHubReleaseAPI/wiki</url>
 
     <properties>
         <java.version>8</java.version>
