@@ -34,9 +34,11 @@ import java.util.stream.Collectors;
 
 public class GitHubReleaseAPI {
 
-    private final JSONArray array;
-    private final List<GitHubRelease> releases;
+    private JSONArray array;
+    private List<GitHubRelease> releases;
     private final String repoURL;
+    private final String repositoryName;
+    private final String organizationName;
 
     /**
      * Create an API object. This object is bound to 1 repository.
@@ -49,6 +51,8 @@ public class GitHubReleaseAPI {
         this.array = readGitHubAPI(repoName, orgName);
         this.releases = getReleases();
         this.repoURL = "https://github.com/" + orgName + "/" + repoName;
+        this.organizationName = orgName;
+        this.repositoryName = repoName;
     }
 
     /**
@@ -153,5 +157,13 @@ public class GitHubReleaseAPI {
      */
     public String getRepoURL() {
         return repoURL;
+    }
+
+    /**
+     * Refresh the releases for this repository.
+     */
+    public void refreshReleases() throws IOException {
+        this.array = readGitHubAPI(repositoryName, organizationName);
+        this.releases = getReleases();
     }
 }
