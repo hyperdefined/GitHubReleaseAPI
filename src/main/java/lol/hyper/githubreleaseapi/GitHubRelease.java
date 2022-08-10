@@ -27,14 +27,32 @@ import java.util.List;
 
 public class GitHubRelease {
 
-    private final JSONObject object;
+    private final String tagVersion;
+    private final String releaseNotes;
+    private final String publishedDate;
+    private final String creationDate;
+    private final List<String> releaseAssets = new ArrayList<>();
+    private final boolean isDraft;
+    private final boolean isPreRelease;
+    private final String releaseURL;
 
     /**
      * Creates a release object of a certain tag on GitHub.
      * @param object The JSON object of the release.
      */
     protected GitHubRelease(JSONObject object) {
-        this.object = object;
+        this.tagVersion = object.getString("tag_name");
+        this.releaseNotes = object.getString("body");
+        this.publishedDate = object.getString("published_at");
+        this.creationDate = object.getString("created_at");
+        JSONArray assets = object.getJSONArray("assets");
+        for (int i = 0; i < assets.length(); i++) {
+            JSONObject temp = assets.getJSONObject(i);
+            releaseAssets.add(temp.getString("browser_download_url"));
+        }
+        this.isDraft = object.getBoolean("draft");
+        this.isPreRelease = object.getBoolean("prerelease");
+        this.releaseURL = object.getString("html_url");
     }
 
     /**
@@ -43,7 +61,7 @@ public class GitHubRelease {
      * @return The tag version.
      */
     public @NotNull String getTagVersion() {
-        return object.getString("tag_name");
+        return tagVersion;
     }
 
     /**
@@ -52,7 +70,7 @@ public class GitHubRelease {
      * @return A string with the release notes.
      */
     public @NotNull String getReleaseNotes() {
-        return object.getString("body");
+        return releaseNotes;
     }
 
     /**
@@ -61,7 +79,7 @@ public class GitHubRelease {
      * @return A string with the date.
      */
     public @NotNull String getPublishedDate() {
-        return object.getString("published_at");
+        return publishedDate;
     }
 
     /**
@@ -70,7 +88,7 @@ public class GitHubRelease {
      * @return A string with the date.
      */
     public @NotNull String getCreatedDate() {
-        return object.getString("created_at");
+        return creationDate;
     }
 
     /**
@@ -79,13 +97,7 @@ public class GitHubRelease {
      * @return A list of direct links to uploaded files.
      */
     public @NotNull List<String> getReleaseAssets() {
-        List<String> urls = new ArrayList<>();
-        JSONArray releases = object.getJSONArray("assets");
-        for (int i = 0; i < releases.length(); i++) {
-            JSONObject temp = releases.getJSONObject(i);
-            urls.add(temp.getString("browser_download_url"));
-        }
-        return urls;
+        return releaseAssets;
     }
 
     /**
@@ -94,7 +106,7 @@ public class GitHubRelease {
      * @return True/False if the release is a draft.
      */
     public boolean isDraft() {
-        return object.getBoolean("draft");
+        return isDraft;
     }
 
     /**
@@ -103,15 +115,30 @@ public class GitHubRelease {
      * @return True/False if the release is a pre-release.
      */
     public boolean isPreRelease() {
-        return object.getBoolean("prerelease");
+        return isPreRelease;
     }
 
     /**
      * Gets the HTML link of the release. This is the "regular" release page.
+     * This is now {@link #getReleaseURL()}.
      *
      * @return The URL of release.
      */
+    @Deprecated
     public String getRegularLink() {
-        return object.getString("html_url");
+        return releaseURL;
+    }
+
+    /**
+     * Gets the URL of the release.
+     * @return The URL of this release.
+     */
+    public String getReleaseURL() {
+        return releaseURL;
+    }
+
+    @Override
+    public String toString() {
+        return tagVersion;
     }
 }
