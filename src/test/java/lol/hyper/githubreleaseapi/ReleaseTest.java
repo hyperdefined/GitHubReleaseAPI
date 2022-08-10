@@ -24,7 +24,7 @@ import java.io.IOException;
 public class ReleaseTest {
 
     @Test
-    public void outputRepoReleases() {
+    public void outputRepoReleases() throws IOException {
         GitHubReleaseAPI api = new GitHubReleaseAPI("ToolStats", "hyperdefined");
 
         System.out.println("Latest version: " + api.getLatestVersion());
@@ -35,9 +35,10 @@ public class ReleaseTest {
     }
 
     @Test
-    public void invalidRelease() {
+    public void invalidRelease() throws IOException {
         GitHubReleaseAPI api = new GitHubReleaseAPI("ToolStats", "hyperdefined");
         try {
+            System.out.println("This exception is intentional");
             GitHubRelease invalidTag = api.getReleaseByTag("invalid-tag");
         } catch (ReleaseNotFoundException exception) {
             exception.printStackTrace();
@@ -45,7 +46,7 @@ public class ReleaseTest {
     }
 
     @Test
-    public void outputReleaseDetails() {
+    public void outputReleaseDetails() throws IOException {
         GitHubReleaseAPI api = new GitHubReleaseAPI("ToolStats", "hyperdefined");
         GitHubRelease latest = api.getLatestVersion();
         System.out.println(latest.getTagVersion());

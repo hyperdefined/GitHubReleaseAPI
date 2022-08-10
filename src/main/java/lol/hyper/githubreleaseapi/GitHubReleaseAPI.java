@@ -29,6 +29,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,12 +47,8 @@ public class GitHubReleaseAPI {
      * @param repoName The repository name.
      * @param orgName  The name of the user OR organization the repository is on.
      */
-    public GitHubReleaseAPI(@NotNull String repoName, @NotNull String orgName) {
-        try {
-            this.array = readGitHubAPI(repoName, orgName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public GitHubReleaseAPI(@NotNull String repoName, @NotNull String orgName) throws IOException{
+        this.array = readGitHubAPI(repoName, orgName);
         this.releases = getReleases();
         this.repoURL = "https://github.com/" + orgName + "/" + repoName;
         this.organizationName = orgName;
