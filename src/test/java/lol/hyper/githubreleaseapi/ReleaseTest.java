@@ -24,7 +24,37 @@ import java.io.IOException;
 public class ReleaseTest {
 
     @Test
-    public void outputReleaseDetails() throws IOException {
+    public void outputRepoReleases() {
         GitHubReleaseAPI api = new GitHubReleaseAPI("ToolStats", "hyperdefined");
+
+        System.out.println("Latest version: " + api.getLatestVersion());
+
+        for (GitHubRelease release : api.getAllReleases()) {
+            System.out.println(release);
+        }
+    }
+
+    @Test
+    public void invalidRelease() {
+        GitHubReleaseAPI api = new GitHubReleaseAPI("ToolStats", "hyperdefined");
+        try {
+            GitHubRelease invalidTag = api.getReleaseByTag("invalid-tag");
+        } catch (ReleaseNotFoundException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    @Test
+    public void outputReleaseDetails() {
+        GitHubReleaseAPI api = new GitHubReleaseAPI("ToolStats", "hyperdefined");
+        GitHubRelease latest = api.getLatestVersion();
+        System.out.println(latest.getTagVersion());
+        System.out.println(latest.getReleaseNotes());
+        System.out.println(latest.getPublishedDate());
+        System.out.println(latest.getCreatedDate());
+        System.out.println(latest.getReleaseAssets());
+        System.out.println(latest.isDraft());
+        System.out.println(latest.isPreRelease());
+        System.out.println(latest.getReleaseURL());
     }
 }
