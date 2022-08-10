@@ -45,10 +45,13 @@ public class GitHubReleaseAPI {
      *
      * @param repoName The repository name.
      * @param orgName  The name of the user OR organization the repository is on.
-     * @throws IOException Thrown if there is an error making the request.
      */
-    public GitHubReleaseAPI(@NotNull String repoName, @NotNull String orgName) throws IOException {
-        this.array = readGitHubAPI(repoName, orgName);
+    public GitHubReleaseAPI(@NotNull String repoName, @NotNull String orgName) {
+        try {
+            this.array = readGitHubAPI(repoName, orgName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         this.releases = getReleases();
         this.repoURL = "https://github.com/" + orgName + "/" + repoName;
         this.organizationName = orgName;
