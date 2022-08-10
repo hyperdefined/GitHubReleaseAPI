@@ -60,7 +60,7 @@ public class GitHubReleaseAPI {
      *
      * @return A list of all the releases.
      */
-    public @Nullable List<GitHubRelease> getAllReleases() {
+    public @NotNull List<GitHubRelease> getAllReleases() {
         if (releases.isEmpty()) {
             throw new NoReleasesFoundException(repoURL);
         }
