@@ -28,6 +28,7 @@ public class ReleaseTest {
         GitHubReleaseAPI api = new GitHubReleaseAPI("ToolStats", "hyperdefined");
 
         System.out.println("Latest version: " + api.getLatestVersion());
+        System.out.println(api.getRepoURL());
 
         for (GitHubRelease release : api.getAllReleases()) {
             System.out.println(release);
