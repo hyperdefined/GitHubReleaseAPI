@@ -19,6 +19,11 @@ package lol.hyper.githubreleaseapi;
 
 public class NoReleasesFoundException extends RuntimeException {
 
+    /**
+     * Thrown when a GitHub repository doesn't have any releases.
+     *
+     * @param errorMessage The error message included with the exception.
+     */
     public NoReleasesFoundException(String errorMessage) {
         super(errorMessage);
     }

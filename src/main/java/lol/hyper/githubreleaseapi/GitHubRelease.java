@@ -120,17 +120,6 @@ public class GitHubRelease {
     }
 
     /**
-     * Gets the HTML link of the release. This is the "regular" release page.
-     * This is now {@link #getReleaseURL()}.
-     *
-     * @return The URL of release.
-     */
-    @Deprecated
-    public String getRegularLink() {
-        return releaseURL;
-    }
-
-    /**
      * Gets the URL of the release.
      *
      * @return The URL of this release.
